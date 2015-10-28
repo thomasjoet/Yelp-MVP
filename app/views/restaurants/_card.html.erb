@@ -1,0 +1,20 @@
+<div class="card">
+  <span class="card-bg" style="background-image:url('https://unsplash.it/600/300?image=3')"></span>
+  <span class="card-gradient"></span>
+  <span class="card-category">French</span>
+  <span class="card-text">
+    <h2><%= restau.name %></h2>
+    <p><%= restau.address %></p>
+    <p>
+    <% unless restau.stars.nil? %>
+      <% restau.stars.times do %>
+        <i class="fa fa-star"></i>
+      <% end %>
+    <% end %>
+    </p>
+  </span>
+  <span class="card-user">
+    <img src="http://placehold.it/50x50" class="avatar avatar-bordered"/>
+  </span>
+  <%= link_to "", restaurant_path(restau), class: "card-link" %>
+</div>

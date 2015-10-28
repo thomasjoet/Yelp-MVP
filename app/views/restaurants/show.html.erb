@@ -1,0 +1,39 @@
+<div class="text-center">
+  <h1><%= @restaurant.name %> </h1>
+  <p> <%= @restaurant.category %> </p>
+  <p> <i class="fa fa-map-marker"></i> <%= @restaurant.address %> </p>
+  <p> <i class="fa fa-phone"></i> <%= @restaurant.phone_number %> </p>
+  <%= link_to "Delete", @restaurant,
+        method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= link_to "update", edit_restaurant_path(@restaurant) %>
+  <p></p>
+  <h2 class="text-center">Reviews</h2>
+  <ul class="list-unstyled">
+    <p>
+      <% @restaurant.reviews.each do |review| %>
+        <li>
+          <%= review.content %>
+          (<% review.rating.times do %>
+            <i class="fa fa-star"></i>
+          <% end %>)
+        </li>
+      <% end %>
+    </p>
+  </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <%= simple_form_for [@restaurant, @review] do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :content, placeholder: "Did you like it?" %>
+        <%= f.input :rating, collection: [1, 2, 3, 4, 5], prompt: "How many stars?" %>
+        <%= f.button :submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
